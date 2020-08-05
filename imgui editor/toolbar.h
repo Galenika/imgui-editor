@@ -62,6 +62,7 @@ static int list_type = 0;
 #include "imgui/imgui_internal.h"
 
 char itemname[64];
+char chkitemname[64];
 
 void MenuBar()
 {
@@ -110,6 +111,20 @@ static int sub_tabishe = 0;
 
 ImGui::FileBrowser fileDialog;
 ImGui::FileBrowser fontDialog;
+
+int chkpos_sett1, chkpos_sett2, chkpos_sett3, chkpos_sett4;
+int chkthinkness = 1;
+
+float chkcolor1[4] = { 1.f,1.f,1.f,1.f };
+float chkcolor2[4] = { 1.f,1.f,1.f,1.f };
+float chkcolor3[4] = { 1.f,1.f,1.f,1.f };
+float chkcolor4[4] = { 1.f,1.f,1.f,1.f };
+
+int chksegments = 0;
+int chkrounding = 0;
+int chkradius = 0;
+
+int chklist_type = 0;
 
 void ToolBar()
 {
@@ -226,8 +241,6 @@ void ToolBar()
                 }
                 ImGui::EndTabBar();
             }
-            ImGui::Spacing();
-            ImGui::SameLine(5);
             ImGui::Spacing();
             ImGui::SameLine(5);
             ToolBarE::BeginChild("Child 2", ImVec2{ width- 10,ImGui::GetIO().DisplaySize.y - 358 },false,NULL);
@@ -460,12 +473,12 @@ void ToolBar()
 			}
 			ImGui::Spacing();
 			ImGui::SameLine(5);
-			ToolBarE::BeginChild("Child 4", ImVec2{ width - 10,ImGui::GetIO().DisplaySize.y - 52 }, false, NULL);
+			ToolBarE::BeginChild("Child 4", ImVec2{ width - 10,450 }, false, NULL);
 			{
 				ImGui::Spacing();
 				ImGui::Spacing();
 				ImGui::SameLine(10);
-				ImGui::BeginChild("Child 5", ImVec2{ width - 30,ImGui::GetIO().DisplaySize.y - 60 }, false, NULL);
+				ImGui::BeginChild("Child 5", ImVec2{ width - 30,440 }, false, NULL);
 				{
 					ImGui::PushItemWidth(width - 30);
 					if (ImGui::CollapsingHeader("total_bb sizing"))
@@ -554,12 +567,94 @@ void ToolBar()
 						ImGui::Spacing();
 						ImGui::SameLine(20);
 						{
+							if (ImGui::CollapsingHeader("background"))
+							{
+								ImGui::Spacing();
+								ImGui::SameLine(21);
+								ImGui::PushItemWidth(width - 180);
+								ImGui::Combo("##1", &chklist_type, ("Add Line\0\rAdd Rect\0\rAdd Rect Filled\0\rAdd Rect Filled Multicolor\0\rAdd Circle\0\rAdd Circle Filled\0\0"));
+								ImGui::Spacing();
+								ImGui::SameLine(21);
+								ImGui::InputText("Name", chkitemname, 64);
+								ImGui::Spacing();
+								ImGui::SameLine(21);
+								ImGui::InputInt("POS1 X", &chkpos_sett1);
+								ImGui::Spacing();
+								ImGui::SameLine(21);
+								ImGui::InputInt("POS1 Y", &chkpos_sett2);
+
+								if (chklist_type != 4 & chklist_type != 5)
+									ImGui::Spacing(),
+									ImGui::SameLine(21),
+									ImGui::InputInt("POS2 X", &chkpos_sett3),
+									ImGui::Spacing(),
+									ImGui::SameLine(21),
+									ImGui::InputInt("POS2 Y", &chkpos_sett4);
+
+								if (chklist_type == 0 | chklist_type == 1 | chklist_type == 4 | chklist_type == 6)
+									ImGui::Spacing(),
+									ImGui::SameLine(21),
+									ImGui::SliderInt("Thinkness", &chkthinkness, 1, 10);
+
+								if (chklist_type == 1 | chklist_type == 2)
+									ImGui::Spacing(),
+									ImGui::SameLine(21),
+									ImGui::SliderInt("Rounding", &chkrounding, 0, 16);
+
+
+								if (chklist_type == 4 | chklist_type == 5)
+									ImGui::Spacing(),
+									ImGui::SameLine(21),
+									ImGui::InputInt("Radius", &chkradius);
+
+
+								if (chklist_type == 4 | chklist_type == 5)
+									ImGui::Spacing(),
+									ImGui::SameLine(21),
+									ImGui::InputInt("Segments", &chksegments);
+
+								ImGui::Spacing();
+								ImGui::SameLine(21);
+								ImGui::ColorEdit4("Color 1", chkcolor1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_InputRGB);
+
+								if (chklist_type == 3)
+								{
+									ImGui::Spacing();
+									ImGui::SameLine(21);
+									ImGui::ColorEdit4("Color 2", chkcolor2, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_InputRGB);
+									ImGui::Spacing();
+									ImGui::SameLine(21);
+									ImGui::ColorEdit4("Color 3", chkcolor3, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_InputRGB);
+									ImGui::Spacing();
+									ImGui::SameLine(21);
+									ImGui::ColorEdit4("Color 4", chkcolor4, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_InputRGB);
+								}
+
+								ImGui::Spacing();
+								ImGui::SameLine(21);
+								if (ImGui::Button("Add Item"))
+								{
+									if (chkitemname[0] != NULL)
+									{
+										list_checkboxback.push_back(checkboxback_struct(chklist_type, chkitemname, GenerateRandomTitle(10), chkpos_sett1, chkpos_sett2, chkpos_sett3, chkpos_sett4, ImColor(chkcolor1[0], chkcolor1[1], chkcolor1[2], chkcolor1[3]), ImColor(chkcolor2[0], chkcolor2[1], chkcolor2[2], chkcolor2[3]), ImColor(chkcolor3[0], chkcolor3[1], chkcolor3[2], chkcolor3[3]), ImColor(chkcolor4[0], chkcolor4[1], chkcolor4[2], chkcolor4[3]), chkthinkness, chksegments, chkrounding, chkradius));
+										notifies::push("Element created successfully", notify_state_s::success_state);
+									}
+									else
+									{
+										notifies::push("Please type element name", notify_state_s::success_state);
+									}
+								}
+							}
+						}
+						ImGui::Spacing();
+						ImGui::SameLine(20);
+						{
 							if (ImGui::CollapsingHeader("active"))
 							{
 								ImGui::PushItemWidth(width - 210);
 								ImGui::Spacing();
-								ImGui::SameLine(20);
-								ImGui::InputInt("pos x", &WidgetCheckbox::label_pos_x);
+								ImGui::SameLine(21);
+					
 							}
 						}
 						ImGui::Spacing();
@@ -569,13 +664,51 @@ void ToolBar()
 							{
 								ImGui::PushItemWidth(width - 210);
 								ImGui::Spacing();
-								ImGui::SameLine(20);
-								ImGui::InputInt("pos x", &WidgetCheckbox::label_pos_x);
+								ImGui::SameLine(21);
+								
 							}
 						}
 					}
 				}
 				ImGui::EndChild();
+			}
+			ToolBarE::EndChild();
+			ImGui::Spacing();
+			ImGui::SameLine(5);
+			if (ImGui::BeginTabBar("TabBar 24", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_NoTooltip))
+			{
+				if (ImGui::BeginTabItem("Background"))
+				{
+					ImGui::EndTabItem();
+				}
+
+				if (ImGui::BeginTabItem("Active"))
+				{
+					ImGui::EndTabItem();
+				}
+
+				if (ImGui::BeginTabItem("Not Active"))
+				{
+					ImGui::EndTabItem();
+				}
+				ImGui::EndTabBar();
+			}
+			ImGui::Spacing();
+			ImGui::SameLine(5);
+			ToolBarE::BeginChild("Child 123", ImVec2{ width - 10,ImGui::GetIO().DisplaySize.y - 528 }, false, NULL);
+			{
+				ImGui::Spacing();
+				ImGui::Spacing();
+
+				for (auto iter = list_checkboxback.begin(); iter != list_checkboxback.end(); iter++)
+				{
+					if (ToolBarE::Item(width - 10, iter->draw, iter->name, iter->secret_name, iter->pos1, iter->pos2, iter->pos3, iter->pos4, iter->color0, iter->color1, iter->color2, iter->color3, thinkness, segments, rounding, radius))
+						list_checkboxback.erase(iter);
+
+					ImGui::Spacing();
+					ImGui::Spacing();
+					ImGui::Spacing();
+				}
 			}
 			ToolBarE::EndChild();
 		}

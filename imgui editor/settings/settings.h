@@ -32,8 +32,6 @@ namespace WidgetCheckbox
 
 	extern int label_pos_x;
 	extern int label_pos_y;
-
-	///////////////////////////////////////////////
 }
 
 namespace Settings
