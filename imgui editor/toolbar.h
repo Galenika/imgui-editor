@@ -10,6 +10,8 @@
 
 #include "notifies.h"
 
+#include "binary_to_compressed_c.h"
+
 #include <ctime>
 
 #include "settings.h"
@@ -373,12 +375,6 @@ void ToolBar()
 					sub_tabishe = 0;
                     ImGui::EndTabItem();
                 }
-
-				if (ImGui::BeginTabItem("Fonts"))
-				{
-					sub_tabishe = 1;
-					ImGui::EndTabItem();
-				}
                 ImGui::EndTabBar();
             }
             ImGui::Spacing();
@@ -433,49 +429,7 @@ void ToolBar()
 
 						fileDialog.Display();
 					}
-					else
-					{
-						if (ImGui::Button("Select a font to convert to bytes"))
-							fontDialog.Open();
-
-						fontDialog.SetTypeFilters({ ".ttf" });
-
-						ImGui::SameLine();
-						if (ImGui::Button("Convert"))
-						{
-							auto file = std::ifstream(fontDialog.GetSelected().string().c_str(), std::ios::binary);
-
-							std::vector<uint8_t> bytes((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-
-							file.close();
-
-							auto out = std::ofstream("C:\\PERS0NA2EDITOR\\out.cpp", std::ofstream::out | std::ofstream::trunc);
-							if (!out.is_open())
-								throw std::exception("Failed to open output file");
-
-							out << "BYTE array[" << bytes.size() << "] = " << std::endl <<
-								"{" << "\t";
-
-							for (auto i = 0u; i < bytes.size(); i++)
-							{
-								if (i % 16 == 0)
-								{
-									out << std::endl;
-									out << "\t";
-								}
-
-								out << std::showbase << std::hex << static_cast<int16_t>(bytes.at(i)) << ", ";
-							}
-
-							out << std::endl << "};";
-
-							out.close();
-
-							ShellExecute(NULL, "open", "c:\\PERS0NA2EDITOR\\out.cpp", NULL, NULL, SW_RESTORE);
-						}
-
-						fontDialog.Display();
-					}
+				
                 }
                 ImGui::EndChild();
             }

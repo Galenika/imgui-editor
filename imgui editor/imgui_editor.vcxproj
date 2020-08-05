@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="binary_to_compressed_c.cpp" />
     <ClCompile Include="codeoutput.cpp" />
     <ClCompile Include="cvar_saver.cpp" />
     <ClCompile Include="imgui.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="web.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="binary_to_compressed_c.h" />
     <ClInclude Include="codeoutput.h" />
     <ClInclude Include="cvar_saver.h" />
     <ClInclude Include="imconfig.h" />

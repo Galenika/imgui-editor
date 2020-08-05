@@ -43,6 +43,9 @@
     <ClCompile Include="toolbar_customs.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
+    <ClCompile Include="binary_to_compressed_c.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="settings.h">
@@ -105,6 +108,9 @@
     <ClInclude Include="codeoutput.h">
       <Filter>workspace</Filter>
     </ClInclude>
+    <ClInclude Include="binary_to_compressed_c.h">
+      <Filter>utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="settings">
@@ -121,6 +127,9 @@
     </Filter>
     <Filter Include="web">
       <UniqueIdentifier>{497335c9-9dda-439c-bfb8-e6e9896ac546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{7667958a-5296-4641-b660-56ef753b9c82}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
