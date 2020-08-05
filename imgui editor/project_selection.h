@@ -2,7 +2,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 
-#include "settings.h"
+#include "settings/settings.h"
 
 #include <vector>
 #include <string>

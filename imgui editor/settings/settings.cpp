@@ -1,5 +1,5 @@
 #include "settings.h"
-#include "list.h"
+#include "../list.h"
 
 namespace Settings
 {

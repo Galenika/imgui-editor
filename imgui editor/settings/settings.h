@@ -1,9 +1,9 @@
 #pragma once
 
 #include "cvar_saver.h"
-#include "imgui.h"
-#include "imgui_internal.h"
-#include "list.h"
+#include "../imgui/imgui.h"
+#include "../imgui/imgui_internal.h"
+#include "../list.h"
 
 namespace Settings
 {

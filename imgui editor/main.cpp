@@ -8,7 +8,7 @@ int main(int, char**)
     WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("PERS0NA2`S IMGUI EDITOR"), NULL };
     ::RegisterClassEx(&wc);
 
-    HWND hwnd = ::CreateWindow(wc.lpszClassName, _T("PERS0NA2`S IMGUI EDITOR [0.04 Open Alpha]"), WS_OVERLAPPEDWINDOW, 100, 100, 1600, 995, NULL, NULL, wc.hInstance, NULL);
+    HWND hwnd = ::CreateWindow(wc.lpszClassName, _T("PERS0NA2`S IMGUI EDITOR [0.05 Open Alpha]"), WS_OVERLAPPEDWINDOW, 100, 100, 1600, 995, NULL, NULL, wc.hInstance, NULL);
 
     HWND hwd = GetConsoleWindow();
     ShowWindow(hwd, SW_HIDE);
@@ -17,12 +17,11 @@ int main(int, char**)
 
     RefreshConfigs();
 
-    if (g_Requests->MakeRequest("falconcheats.me", "/getversion", REQUEST_GET) != "0.04")
+    if (g_Requests->MakeRequest("falconcheats.me", "/getversion", REQUEST_GET) != "0.05")
     {
-        MessageBox(NULL,"Новое обновление найдено, пожалуйста обновите ПО.\nЧенджлог всегда есть на yougame.",NULL,MB_OK);
+        MessageBox(NULL,"Новое обновление найдено, пожалуйста обновите ПО.\nЧенджлог всегда есть на GitHub.",NULL,MB_OK);
 
-        ShellExecuteW(NULL, L"open", L"https://yougame.biz/threads/151159/", 0, 0, SW_SHOWNORMAL);
-        ShellExecuteW(NULL, L"open", L"https://falconcheats.me/pers0na2.exe", 0, 0, SW_SHOWNORMAL);
+        ShellExecuteW(NULL, L"open", L"https://github.com/pers0na2/imgui-editor/releases", 0, 0, SW_SHOWNORMAL);
 
         exit(0);
     }

@@ -2,19 +2,19 @@
 
 #include <string>
 
-#include "imgui.h"
-#include "imgui_impl_dx9.h"
-#include "imgui_impl_win32.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_dx9.h"
+#include "imgui/imgui_impl_win32.h"
 
 #include "toolbar_customs.h"
 
-#include "notifies.h"
+#include "imgui/notifies.h"
 
 #include "binary_to_compressed_c.h"
 
 #include <ctime>
 
-#include "settings.h"
+#include "settings/settings.h"
 using namespace Settings;
 
 std::string GenerateRandomTitle(int length)
@@ -59,7 +59,7 @@ static int list_type = 0;
 #include <Shlobj_core.h>
 #include "list.h"
 
-#include "imgui_internal.h"
+#include "imgui/imgui_internal.h"
 
 char itemname[64];
 
@@ -103,7 +103,7 @@ void MenuBar()
 
 static int sub_tabishe = 0;
 
-#include "imfilebrowser.h"
+#include "imgui/imfilebrowser.h"
 
 ImGui::FileBrowser fileDialog;
 ImGui::FileBrowser fontDialog;

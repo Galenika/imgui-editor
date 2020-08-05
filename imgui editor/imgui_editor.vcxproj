@@ -149,45 +149,45 @@
   <ItemGroup>
     <ClCompile Include="binary_to_compressed_c.cpp" />
     <ClCompile Include="codeoutput.cpp" />
-    <ClCompile Include="cvar_saver.cpp" />
-    <ClCompile Include="imgui.cpp" />
-    <ClCompile Include="imgui_demo.cpp" />
-    <ClCompile Include="imgui_draw.cpp" />
-    <ClCompile Include="imgui_impl_dx9.cpp" />
-    <ClCompile Include="imgui_impl_win32.cpp" />
-    <ClCompile Include="imgui_widgets.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_demo.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_dx9.cpp" />
+    <ClCompile Include="imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="list.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="project_selection.cpp" />
-    <ClCompile Include="settings.cpp" />
+    <ClCompile Include="settings\cvar_saver.cpp" />
+    <ClCompile Include="settings\settings.cpp" />
     <ClCompile Include="toolbar_customs.cpp" />
-    <ClCompile Include="web.cpp" />
+    <ClCompile Include="web\web.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="binary_to_compressed_c.h" />
     <ClInclude Include="codeoutput.h" />
-    <ClInclude Include="cvar_saver.h" />
-    <ClInclude Include="imconfig.h" />
-    <ClInclude Include="imfilebrowser.h" />
-    <ClInclude Include="imgui.h" />
-    <ClInclude Include="imgui_impl_dx9.h" />
-    <ClInclude Include="imgui_impl_win32.h" />
-    <ClInclude Include="imgui_internal.h" />
-    <ClInclude Include="imstb_rectpack.h" />
-    <ClInclude Include="imstb_textedit.h" />
-    <ClInclude Include="imstb_truetype.h" />
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imfilebrowser.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_impl_dx9.h" />
+    <ClInclude Include="imgui\imgui_impl_win32.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\imstb_rectpack.h" />
+    <ClInclude Include="imgui\imstb_textedit.h" />
+    <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="imgui\notifies.h" />
     <ClInclude Include="list.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="notifies.h" />
     <ClInclude Include="project_selection.h" />
-    <ClInclude Include="settings.h" />
+    <ClInclude Include="settings\cvar_saver.h" />
+    <ClInclude Include="settings\settings.h" />
     <ClInclude Include="toolbar.h" />
     <ClInclude Include="toolbar_customs.h" />
-    <ClInclude Include="web.h" />
+    <ClInclude Include="web\web.h" />
     <ClInclude Include="workspace.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="imgui.ini" />
+    <None Include="imgui\imgui.ini" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
