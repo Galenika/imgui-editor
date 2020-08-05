@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="settings.cpp">
+      <Filter>settings</Filter>
+    </ClCompile>
+    <ClCompile Include="list.cpp">
+      <Filter>settings</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="project_selection.cpp">
+      <Filter>workspace</Filter>
+    </ClCompile>
+    <ClCompile Include="cvar_saver.cpp">
+      <Filter>settings</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_dx9.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_win32.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="web.cpp">
+      <Filter>web</Filter>
+    </ClCompile>
+    <ClCompile Include="codeoutput.cpp">
+      <Filter>workspace</Filter>
+    </ClCompile>
+    <ClCompile Include="toolbar_customs.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="settings.h">
+      <Filter>settings</Filter>
+    </ClInclude>
+    <ClInclude Include="list.h">
+      <Filter>settings</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="workspace.h">
+      <Filter>workspace</Filter>
+    </ClInclude>
+    <ClInclude Include="notifies.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="toolbar_customs.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="toolbar.h">
+      <Filter>workspace</Filter>
+    </ClInclude>
+    <ClInclude Include="project_selection.h">
+      <Filter>workspace</Filter>
+    </ClInclude>
+    <ClInclude Include="cvar_saver.h">
+      <Filter>settings</Filter>
+    </ClInclude>
+    <ClInclude Include="imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imfilebrowser.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_dx9.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_win32.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_rectpack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_truetype.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="web.h">
+      <Filter>web</Filter>
+    </ClInclude>
+    <ClInclude Include="codeoutput.h">
+      <Filter>workspace</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="settings">
+      <UniqueIdentifier>{4a14d23b-027a-4243-9bcb-93ef40449054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{762f209c-d6e2-4581-b34e-68d562da4025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{24a10330-a536-463c-941b-53d289c76c37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="workspace">
+      <UniqueIdentifier>{57c22334-a193-4e4e-8a77-6a19a39665f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="web">
+      <UniqueIdentifier>{497335c9-9dda-439c-bfb8-e6e9896ac546}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imgui.ini">
+      <Filter>imgui</Filter>
+    </None>
+  </ItemGroup>
+</Project>

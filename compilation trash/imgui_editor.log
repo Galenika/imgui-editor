@@ -1,0 +1,56 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(437,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(438,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  codeoutput.cpp
+  cvar_saver.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_dx9.cpp
+  imgui_impl_win32.cpp
+  imgui_widgets.cpp
+  list.cpp
+G:\imgui-editor\imgui editor\list.h(21,21): warning C4244:  =: преобразование "int" в "float", возможна потеря данных
+  main.cpp
+G:\imgui-editor\imgui editor\list.h(21,21): warning C4244:  =: преобразование "int" в "float", возможна потеря данных
+G:\imgui-editor\imgui editor\notifies.h(67,91): warning C4244:  аргумент: преобразование "int" в "const _Ty", возможна потеря данных
+G:\imgui-editor\imgui editor\notifies.h(67,91): warning C4244:         with
+G:\imgui-editor\imgui editor\notifies.h(67,91): warning C4244:         [
+G:\imgui-editor\imgui editor\notifies.h(67,91): warning C4244:             _Ty=float
+G:\imgui-editor\imgui editor\notifies.h(67,91): warning C4244:         ]
+G:\imgui-editor\imgui editor\notifies.h(67,66): warning C4244:  аргумент: преобразование "unsigned __int64" в "const _Ty", возможна потеря данных
+G:\imgui-editor\imgui editor\notifies.h(67,66): warning C4244:         with
+G:\imgui-editor\imgui editor\notifies.h(67,66): warning C4244:         [
+G:\imgui-editor\imgui editor\notifies.h(67,66): warning C4244:             _Ty=float
+G:\imgui-editor\imgui editor\notifies.h(67,66): warning C4244:         ]
+G:\imgui-editor\imgui editor\list.h(21,21): warning C4244:  =: преобразование "int" в "float", возможна потеря данных
+G:\imgui-editor\imgui editor\workspace.h(122,244): warning C4244:  аргумент: преобразование "int" в "float", возможна потеря данных
+G:\imgui-editor\imgui editor\workspace.h(123,250): warning C4244:  аргумент: преобразование "int" в "float", возможна потеря данных
+G:\imgui-editor\imgui editor\workspace.h(125,148): warning C4244:  аргумент: преобразование "int" в "float", возможна потеря данных
+G:\imgui-editor\imgui editor\workspace.h(126,155): warning C4244:  аргумент: преобразование "int" в "float", возможна потеря данных
+G:\imgui-editor\imgui editor\toolbar.h(31,15): warning C4244:  аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+G:\imgui-editor\imgui editor\imfilebrowser.h(217,51): warning C4459:  объявление "width" скрывает глобальное объявление
+G:\imgui-editor\imgui editor\settings.h(96,15): message :   см. объявление "Settings::width"
+G:\imgui-editor\imgui editor\toolbar.h(164,41): warning C4554:  "&": проверьте приоритет операторов на ошибки; для уточнения приоритета используйте скобки
+G:\imgui-editor\imgui editor\toolbar.h(169,9): warning C4554:  "|": проверьте приоритет операторов на ошибки; для уточнения приоритета используйте скобки
+G:\imgui-editor\imgui editor\toolbar.h(169,75): warning C4554:  "|": проверьте приоритет операторов на ошибки; для уточнения приоритета используйте скобки
+G:\imgui-editor\imgui editor\toolbar.h(172,41): warning C4554:  "|": проверьте приоритет операторов на ошибки; для уточнения приоритета используйте скобки
+G:\imgui-editor\imgui editor\toolbar.h(176,41): warning C4554:  "|": проверьте приоритет операторов на ошибки; для уточнения приоритета используйте скобки
+  project_selection.cpp
+G:\imgui-editor\imgui editor\toolbar.h(180,41): warning C4554:  "|": проверьте приоритет операторов на ошибки; для уточнения приоритета используйте скобки
+  settings.cpp
+G:\imgui-editor\imgui editor\list.h(21,21): warning C4244:  =: преобразование "int" в "float", возможна потеря данных
+  toolbar_customs.cpp
+G:\imgui-editor\imgui editor\list.h(21,21): warning C4244:  =: преобразование "int" в "float", возможна потеря данных
+G:\imgui-editor\imgui editor\toolbar_customs.cpp(8,45): warning C4100:  rad: неиспользованный формальный параметр
+G:\imgui-editor\imgui editor\toolbar_customs.cpp(8,31): warning C4100:  rounding: неиспользованный формальный параметр
+G:\imgui-editor\imgui editor\toolbar_customs.cpp(8,18): warning C4100:  segment: неиспользованный формальный параметр
+  web.cpp
+G:\imgui-editor\imgui editor\toolbar_customs.cpp(8,7): warning C4100:  think: неиспользованный формальный параметр
+G:\imgui-editor\imgui editor\toolbar_customs.cpp(8,7): warning C4100: C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  Создание кода
+  Previous IPDB not found, fall back to full compilation.
+G:\imgui-editor\imgui editor\settings.cpp(367): warning C4715: Settings::SaveSettings: значение возвращается не при всех путях выполнения
+G:\imgui-editor\imgui editor\settings.cpp(229): warning C4715: Settings::LoadSettings: значение возвращается не при всех путях выполнения
+  All 2603 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  imgui_editor.vcxproj -> G:\imgui-editor\\build\imgui project.exe
