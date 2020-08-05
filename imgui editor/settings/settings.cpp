@@ -1,6 +1,39 @@
 #include "settings.h"
 #include "../list.h"
 
+namespace WidgetCheckbox
+{
+	bool ttb_include_label_size_x = true;
+	bool ttb_include_label_size_y = true;
+
+	bool ttb_include_frame_padding_y = true;
+	int ttb_frame_padding_multiplier = 2;
+
+	bool ttb_include_custom_size_x = false;
+	bool ttb_include_custom_size_y = false;
+
+	int ttb_total_bb_size_x = 0;
+	int ttb_total_bb_size_y = 0;
+
+	///////////////////////////////////////////////
+
+	bool ckb_include_square_sz_x = true;
+	bool ckb_include_square_sz_y = true;
+
+	bool ckb_include_custom_size_x = false;
+	bool ckb_include_custom_size_y = false;
+
+	int ckb_total_bb_size_x = 0;
+	int ckb_total_bb_size_y = 0;
+
+	///////////////////////////////////////////////
+
+	int label_pos_x = 0;
+	int label_pos_y = 0;
+
+	///////////////////////////////////////////////
+}
+
 namespace Settings
 {
     float       Alpha;

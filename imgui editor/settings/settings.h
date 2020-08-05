@@ -5,6 +5,37 @@
 #include "../imgui/imgui_internal.h"
 #include "../list.h"
 
+namespace WidgetCheckbox
+{
+	extern bool ttb_include_label_size_x;
+	extern bool ttb_include_label_size_y;
+	extern bool ttb_include_frame_padding_y;
+	extern int ttb_frame_padding_multiplier;
+
+	extern bool ttb_include_custom_size_x;
+	extern bool ttb_include_custom_size_y;
+	extern int ttb_total_bb_size_x;
+	extern int ttb_total_bb_size_y;
+
+	///////////////////////////////////////////
+
+	extern bool ckb_include_square_sz_x;
+	extern bool ckb_include_square_sz_y;
+
+	extern bool ckb_include_custom_size_x;
+	extern bool ckb_include_custom_size_y;
+
+	extern int ckb_total_bb_size_x;
+	extern int ckb_total_bb_size_y;
+
+	///////////////////////////////////////////////
+
+	extern int label_pos_x;
+	extern int label_pos_y;
+
+	///////////////////////////////////////////////
+}
+
 namespace Settings
 {
     extern float       Alpha;

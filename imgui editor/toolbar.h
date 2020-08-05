@@ -78,6 +78,9 @@ void MenuBar()
             if (ImGui::MenuItem("Layots", nullptr, tab == 0))
                 tab = 0;
 
+			if (ImGui::MenuItem("Widgets", nullptr, tab == 6))
+				tab = 6;
+
             if (ImGui::MenuItem("Window", nullptr, tab == 3))
                 tab = 3;
 
@@ -124,6 +127,10 @@ void ToolBar()
     ImGui::PushStyleColor(ImGuiCol_FrameBg,ImVec4(120/255.f,120 / 255.f,120 / 255.f,150 / 255.f));
     ImGui::PushStyleColor(ImGuiCol_FrameBgActive, ImVec4(110 / 255.f, 110 / 255.f, 110 / 255.f, 150 / 255.f));
     ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, ImVec4(100 / 255.f, 100 / 255.f, 100 / 255.f, 150 / 255.f));
+
+	ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(120 / 255.f, 120 / 255.f, 120 / 255.f, 150 / 255.f));
+	ImGui::PushStyleColor(ImGuiCol_HeaderActive, ImVec4(110 / 255.f, 110 / 255.f, 110 / 255.f, 150 / 255.f));
+	ImGui::PushStyleColor(ImGuiCol_HeaderHovered, ImVec4(100 / 255.f, 100 / 255.f, 100 / 255.f, 150 / 255.f));
 
     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(120 / 255.f, 120 / 255.f, 120 / 255.f, 150 / 255.f));
     ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(110 / 255.f, 110 / 255.f, 110 / 255.f, 150 / 255.f));
@@ -435,9 +442,146 @@ void ToolBar()
             }
             ToolBarE::EndChild();
         }
+
+		if (tab == 6)
+		{
+			ImGui::Spacing();
+			ImGui::Spacing();
+			ImGui::SameLine(5);
+			if (ImGui::BeginTabBar("TabBar 2", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_NoTooltip))
+			{
+				if (ImGui::BeginTabItem("Checkbox"))
+				{
+					sub_tabishe = 0;
+					ImGui::EndTabItem();
+				}
+
+				ImGui::EndTabBar();
+			}
+			ImGui::Spacing();
+			ImGui::SameLine(5);
+			ToolBarE::BeginChild("Child 4", ImVec2{ width - 10,ImGui::GetIO().DisplaySize.y - 52 }, false, NULL);
+			{
+				ImGui::Spacing();
+				ImGui::Spacing();
+				ImGui::SameLine(10);
+				ImGui::BeginChild("Child 5", ImVec2{ width - 30,ImGui::GetIO().DisplaySize.y - 60 }, false, NULL);
+				{
+					ImGui::PushItemWidth(width - 30);
+					if (ImGui::CollapsingHeader("total_bb sizing"))
+					{
+						{
+							ImGui::Checkbox("include label_size.x", &WidgetCheckbox::ttb_include_label_size_x);
+							ImGui::Checkbox("include custom size x", &WidgetCheckbox::ttb_include_custom_size_x);
+
+							if (WidgetCheckbox::ttb_include_custom_size_x)
+							{
+								ImGui::PushItemWidth(width - 180);
+								ImGui::InputInt("size x", &WidgetCheckbox::ttb_total_bb_size_x);
+							}
+						}
+
+						ImGui::Separator();
+
+						{
+							ImGui::Checkbox("include label_size.y", &WidgetCheckbox::ttb_include_label_size_y);
+							ImGui::Checkbox("include frame_padding.y", &WidgetCheckbox::ttb_include_frame_padding_y);
+
+							if (WidgetCheckbox::ttb_include_frame_padding_y)
+							{
+								ImGui::PushItemWidth(width - 180);
+								ImGui::InputInt("multiplier", &WidgetCheckbox::ttb_frame_padding_multiplier);
+							}
+
+							ImGui::Checkbox("include custom size y", &WidgetCheckbox::ttb_include_custom_size_y);
+
+							if (WidgetCheckbox::ttb_include_custom_size_y)
+							{
+								ImGui::PushItemWidth(width - 180);
+								ImGui::InputInt("size y", &WidgetCheckbox::ttb_total_bb_size_y);
+							}
+						}
+					}
+
+					ImGui::PushItemWidth(width - 30);
+					if (ImGui::CollapsingHeader("check_bb sizing"))
+					{
+						{
+							ImGui::Checkbox("include square_sz.x", &WidgetCheckbox::ckb_include_square_sz_x);
+							ImGui::Checkbox("include custom size check_bb.x", &WidgetCheckbox::ckb_include_custom_size_x);
+
+							if (WidgetCheckbox::ckb_include_custom_size_x)
+							{
+								ImGui::PushItemWidth(width - 180);
+								ImGui::InputInt("size x", &WidgetCheckbox::ckb_total_bb_size_x);
+							}
+						}
+
+						ImGui::Separator();
+
+						{
+							ImGui::Checkbox("include square_sz.y", &WidgetCheckbox::ckb_include_square_sz_y);
+							ImGui::Checkbox("include custom size check_bb.y", &WidgetCheckbox::ckb_include_custom_size_y);
+
+							if (WidgetCheckbox::ckb_include_custom_size_y)
+							{
+								ImGui::PushItemWidth(width - 180);
+								ImGui::InputInt("check_bb size y", &WidgetCheckbox::ckb_total_bb_size_y);
+							}
+						}
+					}
+
+					ImGui::PushItemWidth(width - 30);
+					if (ImGui::CollapsingHeader("label settings"))
+					{
+						{
+							ImGui::PushItemWidth(width - 180);
+							ImGui::InputInt("pos x", &WidgetCheckbox::label_pos_x);
+						}
+
+						ImGui::Separator();
+
+						{
+							ImGui::PushItemWidth(width - 180);
+							ImGui::InputInt("pos y", &WidgetCheckbox::label_pos_y);
+						}
+					}
+
+					ImGui::PushItemWidth(width - 30);
+					if (ImGui::CollapsingHeader("draw statements"))
+					{
+						ImGui::PushItemWidth(width - 50);
+						ImGui::Spacing();
+						ImGui::SameLine(20);
+						{
+							if (ImGui::CollapsingHeader("active"))
+							{
+								ImGui::PushItemWidth(width - 210);
+								ImGui::Spacing();
+								ImGui::SameLine(20);
+								ImGui::InputInt("pos x", &WidgetCheckbox::label_pos_x);
+							}
+						}
+						ImGui::Spacing();
+						ImGui::SameLine(20);
+						{
+							if (ImGui::CollapsingHeader("not active"))
+							{
+								ImGui::PushItemWidth(width - 210);
+								ImGui::Spacing();
+								ImGui::SameLine(20);
+								ImGui::InputInt("pos x", &WidgetCheckbox::label_pos_x);
+							}
+						}
+					}
+				}
+				ImGui::EndChild();
+			}
+			ToolBarE::EndChild();
+		}
     }
     ImGui::End();
 
     ImGui::PopStyleVar(1);
-    ImGui::PopStyleColor(6);
+    ImGui::PopStyleColor(9);
 }

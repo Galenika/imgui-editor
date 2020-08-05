@@ -65,7 +65,11 @@ int main(int, char**)
 			BackGround();
             MenuBar();
             ToolBar();
-            EditedWindow();
+
+			if (tab != 6)
+				EditedWindow();
+			else
+				EditedWidget();
 
             if (code_output)
                 CodeOutPut();

@@ -162,6 +162,7 @@
     <ClCompile Include="settings\settings.cpp" />
     <ClCompile Include="toolbar_customs.cpp" />
     <ClCompile Include="web\web.cpp" />
+    <ClCompile Include="widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="binary_to_compressed_c.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="toolbar.h" />
     <ClInclude Include="toolbar_customs.h" />
     <ClInclude Include="web\web.h" />
+    <ClInclude Include="widgets.h" />
     <ClInclude Include="workspace.h" />
   </ItemGroup>
   <ItemGroup>

@@ -46,6 +46,9 @@
     <ClCompile Include="settings\settings.cpp">
       <Filter>settings</Filter>
     </ClCompile>
+    <ClCompile Include="widgets.cpp">
+      <Filter>workspace</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="list.h">
@@ -110,6 +113,9 @@
     </ClInclude>
     <ClInclude Include="settings\settings.h">
       <Filter>settings</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets.h">
+      <Filter>workspace</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,8 @@
 #include "imgui/notifies.h"
 #include "settings/settings.h"
 
+#include "widgets.h"
+
 using namespace Settings;
 
 void BackGround()
@@ -140,4 +142,28 @@ void EditedWindow()
 
     ImGui::PopStyleVar(20);
     ImGui::PopStyleColor(35);
+}
+
+void EditedWidget()
+{
+	auto flags = (no_titlebar ? ImGuiWindowFlags_NoTitleBar : NULL) |
+		(no_scrollbar ? ImGuiWindowFlags_NoScrollbar : NULL) |
+		(no_menu ? ImGuiWindowFlags_MenuBar : NULL) |
+		(no_move ? ImGuiWindowFlags_NoMove : NULL) |
+		(no_resize ? ImGuiWindowFlags_NoResize : NULL) |
+		(no_collapse ? ImGuiWindowFlags_NoCollapse : NULL) |
+		(no_nav ? ImGuiWindowFlags_NoNav : NULL) |
+		(no_background ? ImGuiWindowFlags_NoBackground : NULL) |
+		(no_bring_to_front ? ImGuiWindowFlags_NoBringToFrontOnFocus : NULL);
+
+
+	ImGui::SetNextWindowSize(windowsize);
+
+	static bool checkbox = false;
+
+	ImGui::Begin("Widgets1", nullptr, flags);
+	{
+		Checkbox("Checkbox", &checkbox);
+	}
+	ImGui::End();
 }
