@@ -37,3 +37,9 @@
 *.ini
 .build
 .compilation trash
+*.iobj
+*.ipdb
+*.pdb
+*.tlog
+*.log
+*.ini
