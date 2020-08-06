@@ -17,6 +17,23 @@
 #include "settings/settings.h"
 using namespace Settings;
 
+void ShowHelpMarker(const char* desc, bool sameline) {
+
+	if (sameline)
+		ImGui::SameLine(0.f, 1.f);
+
+	ImGui::TextDisabled(" " "?" " ");
+
+	ImDrawList* draw_list = ImGui::GetOverlayDrawList();
+	ImVec2 cur_pos = ImGui::GetIO().MousePos;
+	const ImVec2 label_sz = ImGui::CalcTextSize(desc, NULL, true, 0.f);
+	ImVec2 textpos = { cur_pos.x + label_sz.x / 2, cur_pos.y + label_sz.y / 2 };
+
+	if (ImGui::IsItemHovered()) {
+		draw_list->AddText(textpos, ImColor(255, 255, 255), desc);
+	}
+}
+
 std::string GenerateRandomTitle(int length)
 {
     std::vector<std::string> v_alphabet = {
@@ -484,6 +501,8 @@ void ToolBar()
 					if (ImGui::CollapsingHeader("total_bb sizing"))
 					{
 						{
+							ImGui::Checkbox("visualiser total_bb", &WidgetCheckbox::draw_total_bb_border);
+
 							ImGui::Checkbox("include label_size.x", &WidgetCheckbox::ttb_include_label_size_x);
 							ImGui::Checkbox("include custom size x", &WidgetCheckbox::ttb_include_custom_size_x);
 
@@ -517,34 +536,6 @@ void ToolBar()
 					}
 
 					ImGui::PushItemWidth(width - 30);
-					if (ImGui::CollapsingHeader("check_bb sizing"))
-					{
-						{
-							ImGui::Checkbox("include square_sz.x", &WidgetCheckbox::ckb_include_square_sz_x);
-							ImGui::Checkbox("include custom size check_bb.x", &WidgetCheckbox::ckb_include_custom_size_x);
-
-							if (WidgetCheckbox::ckb_include_custom_size_x)
-							{
-								ImGui::PushItemWidth(width - 180);
-								ImGui::InputInt("size x", &WidgetCheckbox::ckb_total_bb_size_x);
-							}
-						}
-
-						ImGui::Separator();
-
-						{
-							ImGui::Checkbox("include square_sz.y", &WidgetCheckbox::ckb_include_square_sz_y);
-							ImGui::Checkbox("include custom size check_bb.y", &WidgetCheckbox::ckb_include_custom_size_y);
-
-							if (WidgetCheckbox::ckb_include_custom_size_y)
-							{
-								ImGui::PushItemWidth(width - 180);
-								ImGui::InputInt("check_bb size y", &WidgetCheckbox::ckb_total_bb_size_y);
-							}
-						}
-					}
-
-					ImGui::PushItemWidth(width - 30);
 					if (ImGui::CollapsingHeader("label settings"))
 					{
 						{
@@ -563,109 +554,80 @@ void ToolBar()
 					ImGui::PushItemWidth(width - 30);
 					if (ImGui::CollapsingHeader("draw statements"))
 					{
-						ImGui::PushItemWidth(width - 50);
-						ImGui::Spacing();
-						ImGui::SameLine(20);
 						{
-							if (ImGui::CollapsingHeader("background"))
+							ImGui::PushItemWidth(width - 180);
+							ImGui::Combo("##1", &chklist_type, ("Add Line\0\rAdd Rect\0\rAdd Rect Filled\0\rAdd Rect Filled Multicolor\0\rAdd Circle\0\rAdd Circle Filled\0\0"));
+
+							ImGui::InputText("Name", chkitemname, 64);
+
+							ImGui::InputInt("POS1 X", &chkpos_sett1); ShowHelpMarker("Starts from total_bb.Min", true);
+		
+							ImGui::InputInt("POS1 Y", &chkpos_sett2); ShowHelpMarker("Starts from total_bb.Min", true);
+
+							if (chklist_type != 4 & chklist_type != 5)
+								ImGui::InputInt("POS2 X", &chkpos_sett3), ShowHelpMarker("Starts from total_bb.Min", true),
+								ImGui::InputInt("POS2 Y", &chkpos_sett4), ShowHelpMarker("Starts from total_bb.Min", true);
+
+							if (chklist_type == 0 | chklist_type == 1 | chklist_type == 4 | chklist_type == 6)
+								ImGui::SliderInt("Thinkness", &chkthinkness, 1, 10);
+
+							if (chklist_type == 1 | chklist_type == 2)
+								ImGui::SliderInt("Rounding", &chkrounding, 0, 16);
+
+							if (chklist_type == 4 | chklist_type == 5)
+								ImGui::InputInt("Radius", &chkradius);
+
+							if (chklist_type == 4 | chklist_type == 5)
+								ImGui::InputInt("Segments", &chksegments);
+
+							ImGui::ColorEdit4("Color 1", chkcolor1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_InputRGB);
+
+							if (chklist_type == 3)
 							{
-								ImGui::Spacing();
-								ImGui::SameLine(21);
-								ImGui::PushItemWidth(width - 180);
-								ImGui::Combo("##1", &chklist_type, ("Add Line\0\rAdd Rect\0\rAdd Rect Filled\0\rAdd Rect Filled Multicolor\0\rAdd Circle\0\rAdd Circle Filled\0\0"));
-								ImGui::Spacing();
-								ImGui::SameLine(21);
-								ImGui::InputText("Name", chkitemname, 64);
-								ImGui::Spacing();
-								ImGui::SameLine(21);
-								ImGui::InputInt("POS1 X", &chkpos_sett1);
-								ImGui::Spacing();
-								ImGui::SameLine(21);
-								ImGui::InputInt("POS1 Y", &chkpos_sett2);
+								ImGui::ColorEdit4("Color 2", chkcolor2, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_InputRGB);
+								ImGui::ColorEdit4("Color 3", chkcolor3, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_InputRGB);
+								ImGui::ColorEdit4("Color 4", chkcolor4, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_InputRGB);
+							}
 
-								if (chklist_type != 4 & chklist_type != 5)
-									ImGui::Spacing(),
-									ImGui::SameLine(21),
-									ImGui::InputInt("POS2 X", &chkpos_sett3),
-									ImGui::Spacing(),
-									ImGui::SameLine(21),
-									ImGui::InputInt("POS2 Y", &chkpos_sett4);
-
-								if (chklist_type == 0 | chklist_type == 1 | chklist_type == 4 | chklist_type == 6)
-									ImGui::Spacing(),
-									ImGui::SameLine(21),
-									ImGui::SliderInt("Thinkness", &chkthinkness, 1, 10);
-
-								if (chklist_type == 1 | chklist_type == 2)
-									ImGui::Spacing(),
-									ImGui::SameLine(21),
-									ImGui::SliderInt("Rounding", &chkrounding, 0, 16);
-
-
-								if (chklist_type == 4 | chklist_type == 5)
-									ImGui::Spacing(),
-									ImGui::SameLine(21),
-									ImGui::InputInt("Radius", &chkradius);
-
-
-								if (chklist_type == 4 | chklist_type == 5)
-									ImGui::Spacing(),
-									ImGui::SameLine(21),
-									ImGui::InputInt("Segments", &chksegments);
-
-								ImGui::Spacing();
-								ImGui::SameLine(21);
-								ImGui::ColorEdit4("Color 1", chkcolor1, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_InputRGB);
-
-								if (chklist_type == 3)
+							if (ImGui::Button("Add to Background"))
+							{
+								if (chkitemname[0] != NULL)
 								{
-									ImGui::Spacing();
-									ImGui::SameLine(21);
-									ImGui::ColorEdit4("Color 2", chkcolor2, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_InputRGB);
-									ImGui::Spacing();
-									ImGui::SameLine(21);
-									ImGui::ColorEdit4("Color 3", chkcolor3, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_InputRGB);
-									ImGui::Spacing();
-									ImGui::SameLine(21);
-									ImGui::ColorEdit4("Color 4", chkcolor4, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_InputRGB);
+									list_checkboxback.push_back(checkbox_struct(chklist_type, chkitemname, GenerateRandomTitle(10), chkpos_sett1, chkpos_sett2, chkpos_sett3, chkpos_sett4, ImColor(chkcolor1[0], chkcolor1[1], chkcolor1[2], chkcolor1[3]), ImColor(chkcolor2[0], chkcolor2[1], chkcolor2[2], chkcolor2[3]), ImColor(chkcolor3[0], chkcolor3[1], chkcolor3[2], chkcolor3[3]), ImColor(chkcolor4[0], chkcolor4[1], chkcolor4[2], chkcolor4[3]), chkthinkness, chksegments, chkrounding, chkradius));
+									notifies::push("Element created successfully", notify_state_s::success_state);
 								}
-
-								ImGui::Spacing();
-								ImGui::SameLine(21);
-								if (ImGui::Button("Add Item"))
+								else
 								{
-									if (chkitemname[0] != NULL)
-									{
-										list_checkboxback.push_back(checkboxback_struct(chklist_type, chkitemname, GenerateRandomTitle(10), chkpos_sett1, chkpos_sett2, chkpos_sett3, chkpos_sett4, ImColor(chkcolor1[0], chkcolor1[1], chkcolor1[2], chkcolor1[3]), ImColor(chkcolor2[0], chkcolor2[1], chkcolor2[2], chkcolor2[3]), ImColor(chkcolor3[0], chkcolor3[1], chkcolor3[2], chkcolor3[3]), ImColor(chkcolor4[0], chkcolor4[1], chkcolor4[2], chkcolor4[3]), chkthinkness, chksegments, chkrounding, chkradius));
-										notifies::push("Element created successfully", notify_state_s::success_state);
-									}
-									else
-									{
-										notifies::push("Please type element name", notify_state_s::success_state);
-									}
+									notifies::push("Please type element name", notify_state_s::success_state);
 								}
 							}
-						}
-						ImGui::Spacing();
-						ImGui::SameLine(20);
-						{
-							if (ImGui::CollapsingHeader("active"))
+
+							ImGui::SameLine();
+							if (ImGui::Button("Add to Active"))
 							{
-								ImGui::PushItemWidth(width - 210);
-								ImGui::Spacing();
-								ImGui::SameLine(21);
-					
+								if (chkitemname[0] != NULL)
+								{
+									list_checkboxactive.push_back(checkbox_struct(chklist_type, chkitemname, GenerateRandomTitle(10), chkpos_sett1, chkpos_sett2, chkpos_sett3, chkpos_sett4, ImColor(chkcolor1[0], chkcolor1[1], chkcolor1[2], chkcolor1[3]), ImColor(chkcolor2[0], chkcolor2[1], chkcolor2[2], chkcolor2[3]), ImColor(chkcolor3[0], chkcolor3[1], chkcolor3[2], chkcolor3[3]), ImColor(chkcolor4[0], chkcolor4[1], chkcolor4[2], chkcolor4[3]), chkthinkness, chksegments, chkrounding, chkradius));
+									notifies::push("Element created successfully", notify_state_s::success_state);
+								}
+								else
+								{
+									notifies::push("Please type element name", notify_state_s::success_state);
+								}
 							}
-						}
-						ImGui::Spacing();
-						ImGui::SameLine(20);
-						{
-							if (ImGui::CollapsingHeader("not active"))
+
+							ImGui::SameLine();
+							if (ImGui::Button("Add to Not Active"))
 							{
-								ImGui::PushItemWidth(width - 210);
-								ImGui::Spacing();
-								ImGui::SameLine(21);
-								
+								if (chkitemname[0] != NULL)
+								{
+									list_checkboxdeactive.push_back(checkbox_struct(chklist_type, chkitemname, GenerateRandomTitle(10), chkpos_sett1, chkpos_sett2, chkpos_sett3, chkpos_sett4, ImColor(chkcolor1[0], chkcolor1[1], chkcolor1[2], chkcolor1[3]), ImColor(chkcolor2[0], chkcolor2[1], chkcolor2[2], chkcolor2[3]), ImColor(chkcolor3[0], chkcolor3[1], chkcolor3[2], chkcolor3[3]), ImColor(chkcolor4[0], chkcolor4[1], chkcolor4[2], chkcolor4[3]), chkthinkness, chksegments, chkrounding, chkradius));
+									notifies::push("Element created successfully", notify_state_s::success_state);
+								}
+								else
+								{
+									notifies::push("Please type element name", notify_state_s::success_state);
+								}
 							}
 						}
 					}
@@ -675,20 +637,26 @@ void ToolBar()
 			ToolBarE::EndChild();
 			ImGui::Spacing();
 			ImGui::SameLine(5);
+
+			static int selected_draw_statement = 0;
+
 			if (ImGui::BeginTabBar("TabBar 24", ImGuiTabBarFlags_Reorderable | ImGuiTabBarFlags_FittingPolicyScroll | ImGuiTabBarFlags_NoTooltip))
 			{
 				if (ImGui::BeginTabItem("Background"))
 				{
+					selected_draw_statement = 0;
 					ImGui::EndTabItem();
 				}
 
 				if (ImGui::BeginTabItem("Active"))
 				{
+					selected_draw_statement = 1;
 					ImGui::EndTabItem();
 				}
 
 				if (ImGui::BeginTabItem("Not Active"))
 				{
+					selected_draw_statement = 2;
 					ImGui::EndTabItem();
 				}
 				ImGui::EndTabBar();
@@ -697,17 +665,43 @@ void ToolBar()
 			ImGui::SameLine(5);
 			ToolBarE::BeginChild("Child 123", ImVec2{ width - 10,ImGui::GetIO().DisplaySize.y - 528 }, false, NULL);
 			{
-				ImGui::Spacing();
-				ImGui::Spacing();
-
-				for (auto iter = list_checkboxback.begin(); iter != list_checkboxback.end(); iter++)
+				if (selected_draw_statement == 0)
 				{
-					if (ToolBarE::Item(width - 10, iter->draw, iter->name, iter->secret_name, iter->pos1, iter->pos2, iter->pos3, iter->pos4, iter->color0, iter->color1, iter->color2, iter->color3, thinkness, segments, rounding, radius))
-						list_checkboxback.erase(iter);
+					for (auto iter = list_checkboxback.begin(); iter != list_checkboxback.end(); iter++)
+					{
+						if (ToolBarE::Item(width - 10, iter->draw, iter->name, iter->secret_name, iter->pos1, iter->pos2, iter->pos3, iter->pos4, iter->color0, iter->color1, iter->color2, iter->color3, thinkness, segments, rounding, radius))
+							list_checkboxback.erase(iter);
 
-					ImGui::Spacing();
-					ImGui::Spacing();
-					ImGui::Spacing();
+						ImGui::Spacing();
+						ImGui::Spacing();
+						ImGui::Spacing();
+					}
+				}
+
+				if (selected_draw_statement == 1)
+				{
+					for (auto iter = list_checkboxactive.begin(); iter != list_checkboxactive.end(); iter++)
+					{
+						if (ToolBarE::Item(width - 10, iter->draw, iter->name, iter->secret_name, iter->pos1, iter->pos2, iter->pos3, iter->pos4, iter->color0, iter->color1, iter->color2, iter->color3, thinkness, segments, rounding, radius))
+							list_checkboxactive.erase(iter);
+
+						ImGui::Spacing();
+						ImGui::Spacing();
+						ImGui::Spacing();
+					}
+				}
+
+				if (selected_draw_statement == 2)
+				{
+					for (auto iter = list_checkboxdeactive.begin(); iter != list_checkboxdeactive.end(); iter++)
+					{
+						if (ToolBarE::Item(width - 10, iter->draw, iter->name, iter->secret_name, iter->pos1, iter->pos2, iter->pos3, iter->pos4, iter->color0, iter->color1, iter->color2, iter->color3, thinkness, segments, rounding, radius))
+							list_checkboxdeactive.erase(iter);
+
+						ImGui::Spacing();
+						ImGui::Spacing();
+						ImGui::Spacing();
+					}
 				}
 			}
 			ToolBarE::EndChild();

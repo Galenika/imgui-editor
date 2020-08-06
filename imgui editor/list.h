@@ -33,9 +33,9 @@ struct drawlist_struct
 
 extern std::list<drawlist_struct> list_lines;
 
-struct checkboxback_struct
+struct checkbox_struct
 {
-	checkboxback_struct(int style, std::string nm, std::string nmsecret, int pos1_, int pos2_, int pos3_, int pos4_, ImColor color20, ImColor color21, ImColor color22, ImColor color23, int think, int segment, int rounding, int rad)
+	checkbox_struct(int style, std::string nm, std::string nmsecret, int pos1_, int pos2_, int pos3_, int pos4_, ImColor color20, ImColor color21, ImColor color22, ImColor color23, int think, int segment, int rounding, int rad)
 	{
 		name = nm;
 		secret_name = nmsecret;  draw = style;
@@ -56,4 +56,6 @@ struct checkboxback_struct
 	int segments, radius;
 };
 
-extern std::list<checkboxback_struct> list_checkboxback;
+extern std::list<checkbox_struct> list_checkboxback;
+extern std::list<checkbox_struct> list_checkboxactive;
+extern std::list<checkbox_struct> list_checkboxdeactive;

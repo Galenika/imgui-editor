@@ -63,6 +63,11 @@ void CodeOutPut()
 				code_tab = 1;
 				ImGui::EndTabItem();
 			}
+			if (ImGui::BeginTabItem("Checkbox Code"))
+			{
+				code_tab = 2;
+				ImGui::EndTabItem();
+			}
 			ImGui::EndTabBar();
 		}
 		ImGui::Spacing();
@@ -345,9 +350,237 @@ void CodeOutPut()
 					toClipboard(NULL, big);
 				}
 			}
+
 			if (code_tab == 2)
 			{
+				std::string code;
 
+				for (auto iter = list_checkboxback.begin(); iter != list_checkboxback.end(); iter++)
+				{
+					code.append("   ImGui::GetWindowDrawList()->");
+
+					if (iter->draw == 0)
+					{
+						code.append("AddLine(ImVec2(p.x + ");
+						code.append(std::to_string(iter->pos1));
+						code.append(", p.y + ");
+						code.append(std::to_string(iter->pos2));
+						code.append("), ImVec2(p.x + ");
+						code.append(std::to_string(iter->pos3));
+						code.append(", p.y + ");
+						code.append(std::to_string(iter->pos4));
+						code.append("), ");
+						code.append("ImColor(");
+						code.append(std::to_string(iter->color0.Value.x)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.y)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.z)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.w)); code.append("f),");
+						code.append(std::to_string(iter->thinkness));
+						code.append(");");
+
+						code.append("  // ");
+						code.append(iter->name);
+						code.append("\n");
+					}
+
+					if (iter->draw == 1)
+					{
+						code.append("AddRect(ImVec2(p.x + ");
+						code.append(std::to_string(iter->pos1));
+						code.append(", p.y + ");
+						code.append(std::to_string(iter->pos2));
+						code.append("), ImVec2(p.x + ");
+						code.append(std::to_string(iter->pos3));
+						code.append(", p.y + ");
+						code.append(std::to_string(iter->pos4));
+						code.append("), ");
+						code.append("ImColor(");
+						code.append(std::to_string(iter->color0.Value.x)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.y)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.z)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.w)); code.append("f),");
+						code.append(std::to_string(iter->round));
+						code.append(", 15, ");
+						code.append(std::to_string(iter->thinkness));
+						code.append("); ");
+
+						code.append(" // ");
+						code.append(iter->name);
+						code.append("\n");
+					}
+
+					if (iter->draw == 2)
+					{
+						code.append("AddRectFilled(ImVec2(p.x + ");
+						code.append(std::to_string(iter->pos1));
+						code.append(", p.y + ");
+						code.append(std::to_string(iter->pos2));
+						code.append("), ImVec2(p.x + ");
+						code.append(std::to_string(iter->pos3));
+						code.append(", p.y + ");
+						code.append(std::to_string(iter->pos4));
+						code.append("), ");
+						code.append("ImColor(");
+						code.append(std::to_string(iter->color0.Value.x)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.y)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.z)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.w)); code.append("f),");
+						code.append(std::to_string(iter->round));
+						code.append(", 15);");
+
+						code.append(" // ");
+						code.append(iter->name);
+						code.append("\n");
+					}
+
+					if (iter->draw == 3)
+					{
+						code.append("AddRectFilledMultiColor(ImVec2(p.x + ");
+						code.append(std::to_string(iter->pos1));
+						code.append(", p.y + ");
+						code.append(std::to_string(iter->pos2));
+						code.append("), ImVec2(p.x + ");
+						code.append(std::to_string(iter->pos3));
+						code.append(", p.y + ");
+						code.append(std::to_string(iter->pos4));
+						code.append("), ");
+						code.append("ImColor(");
+						code.append(std::to_string(iter->color0.Value.x)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.y)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.z)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.w)); code.append("f),");
+
+						code.append("ImColor(");
+						code.append(std::to_string(iter->color1.Value.x)); code.append("f,");
+						code.append(std::to_string(iter->color1.Value.y)); code.append("f,");
+						code.append(std::to_string(iter->color1.Value.z)); code.append("f,");
+						code.append(std::to_string(iter->color1.Value.w)); code.append("f),");
+
+
+						code.append("ImColor(");
+						code.append(std::to_string(iter->color2.Value.x)); code.append("f,");
+						code.append(std::to_string(iter->color2.Value.y)); code.append("f,");
+						code.append(std::to_string(iter->color2.Value.z)); code.append("f,");
+						code.append(std::to_string(iter->color2.Value.w)); code.append("f),");
+
+
+						code.append("ImColor(");
+						code.append(std::to_string(iter->color3.Value.x)); code.append("f,");
+						code.append(std::to_string(iter->color3.Value.y)); code.append("f,");
+						code.append(std::to_string(iter->color3.Value.z)); code.append("f,");
+						code.append(std::to_string(iter->color3.Value.w)); code.append("f)");
+						code.append(");");
+
+						code.append(" // ");
+						code.append(iter->name);
+						code.append("\n");
+					}
+
+					if (iter->draw == 4)
+					{
+						code.append("AddCircle(ImVec2(p.x + ");
+						code.append(std::to_string(iter->pos1));
+						code.append(", p.y + ");
+						code.append(std::to_string(iter->pos2));
+						code.append("),");
+						code.append(std::to_string(iter->radius));
+						code.append(", ImColor(");
+						code.append(std::to_string(iter->color0.Value.x)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.y)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.z)); code.append("f,");
+						code.append(std::to_string(iter->color0.Value.w)); code.append("f),");
+						code.append(std::to_string(iter->segments));
+						code.append(",");
+						code.append(std::to_string(iter->thinkness));
+						code.append(");");
+
+						code.append(" // ");
+						code.append(iter->name);
+						code.append("\n");
+					}
+				}
+
+
+				code.append("bool ImGui::Checkbox(const char* label, bool* v)\n{\n");
+
+					/*ImGuiWindow* window = GetCurrentWindow();
+					if (window->SkipItems)
+						return false;
+
+					ImGuiContext& g = *GImGui;
+					const ImGuiStyle& style = g.Style;
+					const ImGuiID id = window->GetID(label);
+					const ImVec2 label_size = CalcTextSize(label, NULL, true);
+
+					const ImVec2 pos = window->DC.CursorPos;
+					const ImRect total_bb(pos, pos + ImVec2(square_sz + (style.ItemInnerSpacing.x + (ttb_include_label_size_x ? label_size.x : 0) + ttb_total_bb_size_x),
+						ttb_total_bb_size_y + (ttb_include_label_size_y ? label_size.y : 0) + (ttb_include_frame_padding_y ? style.FramePadding.y * ttb_frame_padding_multiplier : 0)));
+
+					ItemSize(total_bb, style.FramePadding.y);
+					ItemAdd(total_bb, id);
+
+					bool hovered, held;
+					bool pressed = ButtonBehavior(total_bb, id, &hovered, &held);
+
+					if (pressed)
+						* v = !(*v);
+
+					for (auto iter = list_checkboxback.begin(); iter != list_checkboxback.end(); iter++)
+					{
+						switch (iter->draw)
+						{
+						case 0:  window->DrawList->AddLine(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), ImVec2(total_bb.Min.x + iter->pos3, total_bb.Min.y + iter->pos4), iter->color0, iter->thinkness);  break;
+						case 1:  window->DrawList->AddRect(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), ImVec2(total_bb.Min.x + iter->pos3, total_bb.Min.y + iter->pos4), iter->color0, iter->round, 15, iter->thinkness);  break;
+						case 2:  window->DrawList->AddRectFilled(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), ImVec2(total_bb.Min.x + iter->pos3, total_bb.Min.y + iter->pos4), iter->color0, iter->round, 15); break;
+						case 3:  window->DrawList->AddRectFilledMultiColor(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), ImVec2(total_bb.Min.x + iter->pos3, total_bb.Min.y + iter->pos4), iter->color0, iter->color1, iter->color2, iter->color3); break;
+						case 4:  window->DrawList->AddCircle(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), iter->radius, iter->color0, iter->segments, iter->thinkness);  break;
+						case 5:   window->DrawList->AddCircleFilled(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), iter->radius, iter->color0, iter->segments);  break;
+						default:
+							break;
+						}
+
+					}
+
+					if (*v)
+					{
+						for (auto iter = list_checkboxactive.begin(); iter != list_checkboxactive.end(); iter++)
+						{
+							switch (iter->draw)
+							{
+							case 0:  window->DrawList->AddLine(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), ImVec2(total_bb.Min.x + iter->pos3, total_bb.Min.y + iter->pos4), iter->color0, iter->thinkness);  break;
+							case 1:  window->DrawList->AddRect(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), ImVec2(total_bb.Min.x + iter->pos3, total_bb.Min.y + iter->pos4), iter->color0, iter->round, 15, iter->thinkness);  break;
+							case 2:  window->DrawList->AddRectFilled(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), ImVec2(total_bb.Min.x + iter->pos3, total_bb.Min.y + iter->pos4), iter->color0, iter->round, 15); break;
+							case 3:  window->DrawList->AddRectFilledMultiColor(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), ImVec2(total_bb.Min.x + iter->pos3, total_bb.Min.y + iter->pos4), iter->color0, iter->color1, iter->color2, iter->color3); break;
+							case 4:  window->DrawList->AddCircle(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), iter->radius, iter->color0, iter->segments, iter->thinkness);  break;
+							case 5:   window->DrawList->AddCircleFilled(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), iter->radius, iter->color0, iter->segments);  break;
+							default:
+								break;
+							}
+						}
+					}
+					else
+					{
+						for (auto iter = list_checkboxdeactive.begin(); iter != list_checkboxdeactive.end(); iter++)
+						{
+							switch (iter->draw)
+							{
+							case 0:  window->DrawList->AddLine(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), ImVec2(total_bb.Min.x + iter->pos3, total_bb.Min.y + iter->pos4), iter->color0, iter->thinkness);  break;
+							case 1:  window->DrawList->AddRect(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), ImVec2(total_bb.Min.x + iter->pos3, total_bb.Min.y + iter->pos4), iter->color0, iter->round, 15, iter->thinkness);  break;
+							case 2:  window->DrawList->AddRectFilled(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), ImVec2(total_bb.Min.x + iter->pos3, total_bb.Min.y + iter->pos4), iter->color0, iter->round, 15); break;
+							case 3:  window->DrawList->AddRectFilledMultiColor(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), ImVec2(total_bb.Min.x + iter->pos3, total_bb.Min.y + iter->pos4), iter->color0, iter->color1, iter->color2, iter->color3); break;
+							case 4:  window->DrawList->AddCircle(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), iter->radius, iter->color0, iter->segments, iter->thinkness);  break;
+							case 5:   window->DrawList->AddCircleFilled(ImVec2(total_bb.Min.x + iter->pos1, total_bb.Min.y + iter->pos2), iter->radius, iter->color0, iter->segments);  break;
+							default:
+								break;
+							}
+						}
+					}
+
+					ImGui::RenderText(ImVec2(total_bb.Min.x + style.ItemInnerSpacing.x + label_pos_x, total_bb.Min.y + style.FramePadding.y + label_pos_y), label);
+
+					return pressed;
+
+					code.append("}");*/
 			}
 		}
 		ToolBarE::EndChild();

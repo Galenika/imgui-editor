@@ -17,6 +17,8 @@ namespace WidgetCheckbox
 	extern int ttb_total_bb_size_x;
 	extern int ttb_total_bb_size_y;
 
+	extern bool draw_total_bb_border;
+
 	///////////////////////////////////////////
 
 	extern bool ckb_include_square_sz_x;

@@ -15,6 +15,8 @@ namespace WidgetCheckbox
 	int ttb_total_bb_size_x = 0;
 	int ttb_total_bb_size_y = 0;
 
+	bool draw_total_bb_border = false;
+
 	///////////////////////////////////////////////
 
 	bool ckb_include_square_sz_x = true;
@@ -28,7 +30,7 @@ namespace WidgetCheckbox
 
 	///////////////////////////////////////////////
 
-	int label_pos_x = 0;
+	int label_pos_x = 20;
 	int label_pos_y = 0;
 
 	///////////////////////////////////////////////
