@@ -15,3 +15,8 @@ typedef void(*LPSEARCHFUNC)(LPCTSTR lpszFileName);
 void ReadConfigs(LPCTSTR lpszFileName);
 void RefreshConfigs();
 void Saver();
+
+extern int iMenuSheme;
+extern int iConfigSelect;
+extern char ConfigName[24];
+

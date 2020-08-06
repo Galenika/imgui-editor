@@ -3,6 +3,10 @@
 
 vector<string> ConfigList;
 
+int iMenuSheme = 1;
+int iConfigSelect = 0;
+char ConfigName[24] = { 0 };
+
 BOOL SearchFiles(LPCTSTR lpszFileName, LPSEARCHFUNC lpSearchFunc, BOOL bInnerFolders = FALSE)
 {
 	LPTSTR part;
@@ -101,9 +105,6 @@ void Saver()
 
 	ImGui::Begin("config list", nullptr, window_flags);
 	{
-		static int iMenuSheme = 1;
-		static int iConfigSelect = 0;
-		static char ConfigName[11] = { 0 };
 		ImGui::PushItemWidth(292);
 
 		ImGui::SetCursorPos({ 10,10 });

@@ -77,6 +77,7 @@ static int list_type = 0;
 #include "list.h"
 
 #include "imgui/imgui_internal.h"
+#include "codeoutput.h"
 
 char itemname[64];
 char chkitemname[64];
@@ -102,8 +103,8 @@ void MenuBar()
             if (ImGui::MenuItem("Window", nullptr, tab == 3))
                 tab = 3;
 
-            if (ImGui::MenuItem("Code Output", nullptr, code_output == 1))
-                code_output = !code_output;
+            if (ImGui::MenuItem("Code Output", nullptr))
+				CodeOutPut();
 
             ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
 

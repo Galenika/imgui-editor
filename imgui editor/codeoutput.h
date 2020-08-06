@@ -1,7 +1,9 @@
 #pragma once
 
 #include <windows.h>
-
+#include <fstream>
+#include <vector>
+#include <array>
 #include <string>
 
 #include "imgui/imgui.h"
@@ -12,12 +14,3 @@
 #include "toolbar_customs.h"
 
 void CodeOutPut();
-
-
-///
-///
-///
-///  кчрши акърэ цнбмн йнд мюуси гюйпни х ме ялнрпх ясйю
-///
-///
-///

@@ -70,9 +70,6 @@ int main(int, char**)
 				EditedWindow();
 			else
 				EditedWidget();
-
-            if (code_output)
-                CodeOutPut();
         }
         else
         {
